@@ -1,0 +1,9 @@
+{
+  "name": "musk-future-school-web",
+  "version": "1.0.0",
+  "private": true,
+  "description": "《马斯克的未来学校》Godot Web 版本地预览",
+  "scripts": {
+    "dev": "python3 serve.py"
+  }
+}
