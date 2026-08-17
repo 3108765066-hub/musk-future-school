@@ -4,7 +4,7 @@
 // Incrementing CACHE_VERSION will kick off the install event and force
 // previously cached resources to be updated from the network.
 /** @type {string} */
-const CACHE_VERSION = '1786935526|1813573';
+const CACHE_VERSION = '1786945689|5761010';
 /** @type {string} */
 const CACHE_PREFIX = '马斯克的未来学校-sw-cache-';
 const CACHE_NAME = CACHE_PREFIX + CACHE_VERSION;
@@ -21,7 +21,6 @@ const CACHEABLE_FILES = ["index.wasm","index.pck"];
 const FULL_CACHE = CACHED_FILES.concat(CACHEABLE_FILES);
 
 self.addEventListener('install', (event) => {
-	// 新版游戏包不再长时间停在 waiting：安装完立即接管。
 	event.waitUntil(Promise.all([
 		self.skipWaiting(),
 		caches.open(CACHE_NAME).then((cache) => cache.addAll(CACHED_FILES)),
@@ -40,7 +39,6 @@ self.addEventListener('activate', (event) => {
 	}).then(function () {
 		return self.clients.claim();
 	}).then(function () {
-		// 让已经打开的手机 / iPad 页面立即重新读取新 PCK，不再继续跑旧缓存。
 		return self.clients.matchAll().then((all) => all.forEach((client) => client.navigate(client.url)));
 	}));
 });
