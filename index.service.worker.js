@@ -4,7 +4,7 @@
 // Incrementing CACHE_VERSION will kick off the install event and force
 // previously cached resources to be updated from the network.
 /** @type {string} */
-const CACHE_VERSION = '1787017461|3297577';
+const CACHE_VERSION = '1787018728|4198967';
 /** @type {string} */
 const CACHE_PREFIX = '马斯克的未来学校-sw-cache-';
 const CACHE_NAME = CACHE_PREFIX + CACHE_VERSION;
@@ -37,7 +37,6 @@ self.addEventListener('activate', (event) => {
 		// Enable navigation preload if available.
 		return ('navigationPreload' in self.registration) ? self.registration.navigationPreload.enable() : Promise.resolve();
 	}).then(function () {
-		// Activate the new build immediately and reload open game tabs once.
 		return self.clients.claim();
 	}).then(function () {
 		return self.clients.matchAll();
